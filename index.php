@@ -7,7 +7,8 @@
 // | Author: oceanliao <oceanliaono.1@gmail.com> <qq:1576701411>
 // +----------------------------------------------------------------------
 
-
+//开启调试模式
+define('DEBUG',true);
 //定义项目名称
 define('APP_NAME','Home');
 //加载框架核心文件

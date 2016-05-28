@@ -8,6 +8,7 @@
 // | Author: oceanliao <oceanliaono.1@gmail.com> <qq:1576701411>
 // +----------------------------------------------------------------------
 
+
 final class Application{
 	public static function run(){
 		self::_init();//初始化框架
@@ -21,12 +22,15 @@ final class Application{
 
 	/**
      * 实例化应用控制器
-     * @return void
      */
 	private static function _app_run(){
 
-		$a = isset($_GET[C('VAR_ACTION')]) ? $_GET[C('VAR_ACTION')] : 'Index';
+		$a = isset($_GET[C('VAR_ACTION')]) ? $_GET[C('VAR_ACTION')] : 'index';
 		$c = isset($_GET[C('VAR_CONTROLLER')]) ? $_GET[C('VAR_CONTROLLER')] : 'Index';
+
+		define('CONTRULLER',$c);
+		define('ACTION',$a);
+
 		$c .= 'Controller';
 		$obj = new $c();
 		$obj->$a();
@@ -35,7 +39,6 @@ final class Application{
 
     /**
      * 创建默认控制器
-     * @return void
      */
 
 	private static function _create_demo(){
@@ -48,10 +51,10 @@ final class Application{
 *  QQ:1576701411
 */
 class IndexController extends Controller{
-	
+
 	public function index(){
 		header("Content-Type:text/html; charset=utf-8");
-		echo '<img src="http://119.29.135.20/ocean/Public/Images/me.jpg" style="width:100px; height:100px; "></br>欢迎使用OCphp';
+		p("欢迎使用OCphp!");
 	}
 }
 ?>
@@ -63,7 +66,6 @@ str;
     /**
      * 自动载入功能
      * @param string $className 模板文件
-     * @return void
      */
 	private static function _autoload($className){
 
@@ -73,7 +75,6 @@ str;
 
     /**
      * 初始化框架
-     * @return void
      */
 	private static function _init(){
 		//加载配置项
@@ -81,7 +82,7 @@ str;
 
 		//用户配置项
 		$userPath = APP_CONFIG_PATH . '/config.php';
-		
+
 		$userConfig = <<<str
 <?php
 return array(
@@ -103,16 +104,15 @@ str;
 
 	/**
      * 设置资源路径
-     * @return void
      */
 	private static function _set_url(){
 
 			$path = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'];
 			$path = str_replace('\\', '/', $path);
-			define('__APP__', $path);
-			define('__ROOT__', dirname(__APP__));
-			define('__TPL__',__ROOT__ . '/' .APP_NAME . '/Tpl');
-			define('__PUBLIC__',__TPL__ . '/Public');
+			define('__APP__', $path);                           /*http://localhost/OCphp/index.php*/
+			define('__ROOT__', dirname(__APP__));               /*http://localhost/OCphp*/
+			define('__TPL__',__ROOT__ . '/' .APP_NAME . '/Tpl');/*http://localhost/OCphp/Home/Tpl*/
+			define('__PUBLIC__',__TPL__ . '/Public');           /*http://localhost/OCphp/Home/Tpl/Public*/
 	}
 }
-
+?>

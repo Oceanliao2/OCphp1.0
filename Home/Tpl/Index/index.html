@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<title></title>
+	<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+
+	<script>
+		$(function(){
+			$('form').submit(function(){
+				$.ajax({
+					url : '<?php echo __APP__ ?>',
+				})
+			});
+		})
+	</script>
+
+</head>
+<body>
+<form action="javascript:;" method="post">
+	用户名<input type="text" name="username">
+	密码<input type="password" name="password">
+	<input type="submit">
+</form>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>错误信息</title>
+</head>
+<body>
+<style type="text/css">
+    *
+    {
+        font-family: "微软雅黑";
+    }
+
+    body
+    {
+        margin-left: 50px;
+    }
+    h1
+    {
+        font-size: 60px; 
+    }
+    .buttom
+    {
+        font-weight: 900;
+        font-size: 15px;
+    }
+    .buttom a
+    {
+        color: #999;
+        font-weight: 0;
+    }
+</style>
+  <h1>-_-|||</h1>
+  <h2><?php echo $e['message'] ?><h2>
+
+<?php if(DEBUG && isset($e['file'])) : ?>
+
+
+  <h3>错误位置: </h3>
+
+  FILE: <?php echo $e['file'] . 'Line' . $e['line'] ?>
+
+
+  <br/>
+  <h3>Trace: </h3>
+
+
+  <?php endif ?>
+
+  <?php if(isset($e['trace'])): ?>
+
+  <?php echo nl2br($e['trace'])  ?>
+
+  <br/><br/>
+
+  <?php endif ?>
+  
+
+  <div class="buttom">
+  OCphp开源框架(<?php  echo OCPHP_VERSON; ?>)
+  <a href="http://www.oceanliao.com/Oceanliao">Oceanliao's blog</a>
+  </div>
+
+</body>
+</html>
